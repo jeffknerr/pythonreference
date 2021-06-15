@@ -1,0 +1,56 @@
+
+= Output
+
+Typically by *output* we mean either output to the terminal/screen,
+or output to a file. The `print()` function is used for output to
+the terminal (see examples below). For files, the `write()` method
+is used -- see <<_files>> for examples of writing to a file.
+
+== example
+
+    >>> name = "Julie Ertz"
+    >>> number = 8
+    >>> position = "midfielder"
+    >>> gpg = 0.23
+    >>> print(name)
+    Julie Ertz
+    >>> print(number)
+    8
+    >>> print(name, number, position, gpg)
+    Julie Ertz 8 midfielder 0.23
+    >>> print("%s (%d) is a %s averaging %.2f goals/game." % (name,number,position,gpg))
+    Julie Ertz (8) is a midfielder averaging 0.23 goals/game.
+
+== explanation/notes
+
+The `print()` function can print strings, ints, floats, and other data types.
+When printing multiple types together, separating them by
+commas is easiest (useful for debugging!), but doesn't allow formatting.
+Using <<_string_formatting>> is best for complex formatted output.
+
+== another example
+
+When printing a large block of text, it is often easier to use
+a *triple-quoted string*, which you can format exactly as you want
+it to display over multiple lines:
+
+[source,python]
+----
+rules = """
+##############################
+Scattegories v0.1
+-----------------
+Pick a letter and a category list.
+You then have 30 seconds to write down an entry for each
+category that starts with that letter. Good luck!
+##############################
+"""
+print(rules)
+----
+
+---
+
+See also:
+
+- <<_files>>
+- <<_string_formatting>>

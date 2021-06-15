@@ -1,0 +1,26 @@
+
+= Introduction
+
+These pages are meant as a quick reference for the python programming
+language. All code here assumes you are using **python version 3**.
+Use the *Table of Contents* on the left to select your topic of interest.
+
+The python *shell* or *interpreter* is very useful for testing or trying
+simple python statements. Any examples below that have a *triple-greater-than*
+prompt (>>>) are showing output using the python shell, like this:
+
+    >>> print("hello!")
+    hello!
+
+You can start the python shell by typing the `python3` command in a terminal
+window (the dollar sign ($) is the terminal prompt, which you don't type):
+
+    $ python3
+    Python 3.6.7 (default, Oct 22 2018, 11:32:17) 
+    [GCC 8.2.0] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> 
+
+You can exit the python shell with Cntl-d (hold down the Control key, then
+hit the 'd' key).
+

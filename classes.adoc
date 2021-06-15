@@ -1,0 +1,236 @@
+
+= Classes
+
+Classes allow us to design and create our own objects!
+Object-oriented programming (OOP) is crucial for large programs, often
+written by multiple people. It greatly simplifies writing, testing, and 
+debugging if the objects/classes can be written and tested on their own, then used
+in larger programs. OOP also promotes code reuse if the objects can 
+be used in other programs.
+
+== example
+
+Imagine you are a teacher, and you want to keep track of your students
+and their grades for the semester! :)
+
+Here is a `Student` object (in a file called `student.py`), where all 
+students have a name, class year, username, quiz grades, and lab grades:
+
+
+[source, python]
+----
+class Student(object):
+  """student objects"""
+
+  def __init__(self, name, year, username):
+    """constructor, given student name, year, username"""
+
+    self.name = name
+    self.year = year
+    self.username = username
+    self.quizzes = []            # initially, no quiz
+    self.labs = []               # or lab grades
+
+  def __str__(self):
+    """this one *must* return a string"""
+    s = "%s (%s) -- %d" % (self.name, self.username, self.year)
+    s += "\n%s\n%s" % (self.quizzes, self.labs)
+    return s
+
+  def addQuizGrade(self, qgrade):
+    """add a given grade to the quizzes list"""
+    self.quizzes.append(qgrade)
+
+  def addLabGrade(self, lgrade):
+    """add a given grade to the labs list"""
+    self.labs.append(lgrade)
+
+  def currentGrade(self):
+    """
+    calculate and return current grade.
+    quizzes are 60%, labs 40% of total grade
+    """
+    quizavg = 0.0
+    if len(self.quizzes) > 0:
+      quizavg = sum(self.quizzes)/len(self.quizzes)
+    labavg = 0.0
+    if len(self.labs) > 0:
+      labavg = sum(self.labs)/len(self.labs)
+    grade = quizavg*.60 + labavg*.40
+    return grade
+
+#####################################################
+
+def main():
+  s1 = Student("Lee Majors", 2020, "lmajors1")
+  print(s1)
+  s2 = Student("Lindsay Wagner", 2022, "lwagner2")
+  print(s2)
+  s1.addQuizGrade(78)
+  s1.addQuizGrade(75)
+  s1.addQuizGrade(83)
+  s1.addLabGrade(91)
+  s1.addLabGrade(90)
+  print(s1)
+  print(s1.currentGrade())
+  print(s2.currentGrade())
+
+if __name__ == "__main__":
+  main()
+----
+
+== explanation/notes
+
+The code in the `def main()` part at the bottom is solely for testing purposes
+(for the person writing the class), and it is not part of the class definition. 
+It is run only if the file is run: `python3 student.py`,
+and *not* if the file is imported (`from student import *`). This test code is
+very simple, and just tests some of the methods. It also shows how to use the class.
+
+== the `$$__$$init$$__$$` method
+
+In the test code you can see two different student objects (`s1` and `s2`) 
+are created by calling the name of the class: `Student(...)`. Calling the 
+name of the class invokes the **constructor** method: `$$__$$init$$__$$(...)`. This creates
+the object with the given data (name, year, username). In this particular case,
+it also creates the empty lists that will hold the student's quiz and lab grades.
+
+== what is `self`???
+
+All of the `self.xxxxx` variables in the constructor are data *stored* in each
+object. The `self` part refers back to which object (e.g., `s1` or `s2`). So the
+class year 2020 is stored in the first object's `self.year` variable, and the
+username "lwagner2" is stored in the second object's `self.username` variable.
+If you want data stored in an object, create a `self.xxxxx` variable in
+the class constructor (the `$$__init__$$()` function). These `self.xxxxx` variables
+are sometimes called *instance* variables, because they exist for every instance
+of the class (i.e., all `Student` objects).
+
+Note how the `self.xxxxx` variables are used in the other methods (like `currentGrade()`),
+and **they don't have to be passed around as arguments and parameters**. Any `self.xxxxx` variable
+defined in the constructor (`$$__init__$$()`) can be used in any other method in the
+given class.
+
+== methods
+
+After the objects are created, we can modify or access the data stored in the objects
+using the other methods in the class. For example, the teacher might want to add grades
+to each student object:
+
+    s1.addQuizGrade(83)
+    s1.addLabGrade(91)
+
+These two methods add data to the `self.quizzes` and `self.labs` variables.
+Methods are just like functions, but they belong to a specific class, and are
+called using the `object.method()` syntax.
+   
+== the `$$__$$str$$__$$` method
+
+The *str* method is automatically invoked anytime an object is printed
+(e.g., `print(s1)`). You can control how you want your object's data to appear
+by changing the string that `$$__$$str$$__$$` returns. This method is often very helpful
+when debugging a class, as you can print your objects and see what data they contain.
+
+== class Writer vs class User
+
+In OOP, it is often useful to keep in mind these two roles: the person *writing* the class,
+and the person *using* the class. Sometimes you're doing both, but other times you may
+just be using a class someone else wrote.
+
+The *methods* in the class definition provide the class *user* with ways to interact
+with the object and it's data. If you are writing a class, you need to think about 
+how people will use the class, and provide methods for all that they might want
+to do. If you are using a class, you'll need to study the methods for how best
+to use the objects, and what operations are possible.
+
+== another example
+
+Suppose I want to write a stats program to keep track of data on all NBA players.
+I could make a *python list* for each player, where in the list I store the player's 
+name, team, total points scored, etc. But then my whole program would involve lists
+and indexing, and be much harder to read (e.g., player[0] would be the player's name,
+player[1] would be the player's team, etc).
+
+Instead, let's make an NBAPlayer object and store all data for a player in the object:
+
+[source, python]
+----
+class NBAPlayer(object):
+  """class for single NBA player object"""
+
+  def __init__(self, name, number, team):
+    """constructor for player object, given name, etc"""
+    # any self.whatever variable is DATA for this object,
+    # and can be used in any methods in this class
+    self.name = name
+    self.number = int(number)    # jersey number
+    self.team = team
+    self.gp  = 0                 # games played
+    self.pts = 0                 # total points scored
+
+  def __str__(self):
+    """pretty-format info about this object, return a string"""
+    s = "%s #%d -- Team: %s" % (self.name, self.number, self.team)
+    s += "\nGP: %d,  PTS: %d" % (self.gp, self.pts)
+    return s
+
+  def playGame(self, points):
+    """example of adding data to player object"""
+    self.gp += 1           # one game played
+    self.pts += points     # add to total points scored
+
+  def ppg(self):
+    """calculate average points per game"""
+    if self.gp == 0:
+      return 0
+    else:
+      ave = self.pts/float(self.gp)
+      return ave
+
+  def trade(self,newteam):
+    """change team to newteam"""
+    self.team = newteam
+
+  def getName(self):
+    """getter for player's name"""
+    return self.name
+
+  def getTeam(self):
+    """getter for player's team"""
+    return self.team
+----
+
+Now the *user* of this class could write code like this to keep data on a particular player:
+
+[source, python]
+----
+from nbaplayer import *
+
+p1 = NBAPlayer("Jeff Knerr", 11, "Philadelphia 76ers")
+print(p1)
+p1.playGame(20)    # a good game!
+p1.playGame(10)    # so-so...
+print(p1)
+
+print("%s is averaging %5.1f points/game" % (p1.getName(), p1.ppg()))
+
+p1.playGame(3)     # Jeff not playing well....let's trade him
+p1.trade("New York Knicks")
+print(p1)
+----
+
+Running the above code produces the following output:
+
+    Jeff Knerr #11 -- Team: Philadelphia 76ers
+    GP: 0,  PTS:  0
+    Jeff Knerr #11 -- Team: Philadelphia 76ers
+    GP: 2,  PTS: 30
+    Jeff Knerr is averaging  15.0 points/game
+    Jeff Knerr #11 -- Team: New York Knicks
+    GP: 3,  PTS: 33
+
+---
+
+See also:
+
+- <<_objects_and_methods>>

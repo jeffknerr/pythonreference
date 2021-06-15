@@ -1,0 +1,47 @@
+
+### converting between strings and lists
+
+Often, in programs that manipulate strings,
+you want to convert from a string to a list or
+from a list to a string (due to lists
+being mutable and strings being immutable).
+
+To convert any string to a list of individual characters,
+use the `list()` function:
+
+    >>> S = "ABCDEFG"
+    >>> L = list(S)
+    >>> print(L)
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+
+Use the `split()` string method to *split* a string into substrings. The substrings
+are returned as a list. If no argument is given, it will split on whitespace.
+Using an argument, we can split on any substring:
+
+    >>> S = "we love cs"
+    # split on spaces
+    >>> L = S.split()
+    >>> print(L)
+    ['we', 'love', 'cs']
+
+    >>> S = "jeff:rich:sara:david"
+    # split on colons
+    >>> L = S.split(":")
+    >>> print(L)
+    ['jeff', 'rich', 'sara', 'david']
+
+Use the `join()` string method to convert a list back to a string.
+Here's a quick example:
+
+    >>> print(L)
+    ['jeff', 'rich', 'sara', 'david']
+    >>> S = "".join(L)
+    >>> print(S)
+    jeffrichsaradavid
+    >>> S = "XXXX".join(L)
+    >>> print(S)
+    jeffXXXXrichXXXXsaraXXXXdavid
+
+Whatever string is used as the object ("" or "XXXX"), it is inserted
+between each item in the list when making the new string.
+

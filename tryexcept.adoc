@@ -1,0 +1,101 @@
+
+= try/except
+
+In previous examples, when getting a number from the user, we just 
+blindly converted it from a string to an int or a float:
+
+    age = float(input("How old are you? "))
+
+This will of course crash the program if the user enters something
+that can't be converted to a float:
+
+    How old are you? pony
+    Traceback (most recent call last):
+      File "tryexcept.py", line 3, in <module>
+        age = float(input("How old are you? "))
+    ValueError: could not convert string to float: 'pony'
+
+The `try/except` statement gives us a way to *catch* the exception
+(the `ValueError` above) and do something about it (like give the
+user another try, and not just crash the program).
+
+== example
+
+[source,python]
+----
+age = input("How old are you? ")
+try:
+   age = float(age)
+except ValueError:
+   print("Please enter a number...")
+----
+
+And here's what happens when we run that:
+
+    How old are you? zebra
+    Please enter a number...
+
+== explanation/notes
+
+In the above example we *try* to convert the input stored in `age`
+to a float. If that succeeds, great, and the program continues with
+any code below the `try/except` block. If that fails with the 
+`ValueError` exception, the except block is executed (the print
+statement).
+
+If we combine the above with a `while` loop, our input statment
+now repeats until we get valid input:
+
+[source,python]
+----
+VALIDINPUT = False
+while not VALIDINPUT:
+   age = input("How old are you? ")
+   try:
+      age = float(age)
+      VALIDINPUT = True
+   except ValueError:
+      print("Please enter a number...")
+print("Thanks!")
+----
+
+Here we are using a *boolean flag* variable (`VALIDINPUT`) to control
+the `while` loop. The loop continues as long as `VALIDINPUT` is `False`.
+The only way `VALIDINPUT` changes to `True` is if the `age=float(age)`
+statement succeeds. Here's how it looks to the user:
+
+    How old are you? pony
+    Please enter a number...
+    How old are you? zebra
+    Please enter a number...
+    How old are you? 98-5.2
+    Please enter a number...
+    How old are you? 54.2
+    Thanks!
+
+== another example
+
+There are many different 
+https://docs.python.org/3/library/exceptions.html[exceptions in python].
+You can use any of them in a `try/except` statement. Here's another 
+example, trying to open a file, using the `FileNotFoundError` exception:
+
+[source,python]
+----
+VALIDFILE = False
+while not VALIDFILE:
+   filename = input("File to open: ")
+   try:
+      infile = open(filename, "r")
+      VALIDFILE = True
+   except FileNotFoundError:
+      print("I couldn't find that file...")
+print("Got it!")
+----
+
+---
+
+See also:
+
+- <<_while_indefinite_loops>>
+- <<_input>>

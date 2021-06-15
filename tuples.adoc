@@ -1,0 +1,76 @@
+
+
+= Tuples
+
+Tuples are just like python lists, except they use parentheses,
+and are **immutable**.
+
+== example
+
+    >>> T = (1,2,3,4)
+    >>> print(T)
+    (1, 2, 3, 4)
+    >>> print(type(T))
+    <class 'tuple'>
+    >>> x = T[0] + T[2]
+    >>> print(x)
+    4
+    >>> T[0] = 42
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: 'tuple' object does not support item assignment
+    >>>
+
+== explanation/notes
+
+Tuples are useful if you want a list-like data structure, but you want
+to make sure it can't be changed later in the program. They can also be
+used as *keys* in <<_dictionaries>>.
+
+We don't use tuples much in CS21, but they are included here so you 
+know what they are. Sometimes they are mentioned in error messages.
+Here's the most-common error involving tuples in CS21 (forgot to 
+use 'Point' when defining a graphics point object):
+
+    >>> from graphics import *
+    >>> p = (100,200)             # <-- should have been Point(100,200)
+    >>> c = Circle(p, 25)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    graphics.TypeError: When calling Circle constructor, argument should have 
+                        type Point but instead has type tuple.
+    
+== another example
+
+This is also not used much, and somewhat discouraged in CS21, but returning
+multiple items from a function will automatically put them in a tuple:
+
+[source,python]
+----
+def minmax(L):
+  """given a list, find and return min and max of list"""
+
+  min = L[0]
+  max = L[0]
+  for item in L:
+    if item < min:
+      min = item
+    if item > max:
+      max = item
+  return min,max
+----
+
+Here's the output from running the above function:
+
+    >>> result = minmax([30,45,-4,200,5,6,37,99])
+    >>> print(result)
+    (-4, 200)
+    >>> print(type(result))
+    <class 'tuple'>
+
+---
+
+See also:
+
+- <<_lists>>
+- <<_dictionaries>>

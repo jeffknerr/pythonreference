@@ -1,0 +1,221 @@
+
+= Strings
+
+A string is a **sequence** of characters between single or double quotes. 
+The characters can be letters, digits, punctuation, spaces, etc.
+
+== example
+
+    >>> S = "hello"
+    >>> len(S)
+    5
+    >>> print(S[0])
+    h
+    >>> print(S[4])
+    o
+
+== explanation/notes
+
+Each character in a string has a position,
+also called an *index*. In python, positions start at 0, so the "h" in the
+above string is at position 0, and the "o" is at position 4 (note: one
+less than the length of the string). 
+
+You can access individual characters in a string using
+*square-bracket indexing*:
+
+    >>> print(S[2])
+    l
+    >>> print(S[3])
+    l
+    >>> print(S[4])
+    o
+
+Any *sequence* in python can be used in a `for` loop. For strings, we can
+either loop over characters in the string *or* indices (0 to `len(S)-1`).
+Here are a few examples:
+
+    >>> S = "hello"
+    >>> for ch in S:
+    ...   print(ch)
+    ...
+    h
+    e
+    l
+    l
+    o
+    >>> for i in range(len(S)):
+    ...   print(i,S[i])
+    ...
+    0 h
+    1 e
+    2 l
+    3 l
+    4 o
+
+**Strings are immutable**, which means you cannot change individual characters in
+a string. For example, this doesn't work:
+
+    >>> name = "jeff"
+    >>> name[0] = "J"
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: 'str' object does not support item assignment
+
+
+However, you *can* create new strings from parts of existing
+strings.  <<_slicing,Slicing>> (using `[:]` to pick out part of the original string) and
+concatenation (using the `+` operator) are useful for doing this:
+
+    >>> name = "jeff"
+    >>> name = "J" + name[1:]
+    >>> print(name)
+    Jeff
+
+Here are some more *slicing* examples:
+
+    >>> S = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    >>> first10 = S[:10]
+    >>> print(first10)
+    ABCDEFGHIJ
+    >>> last10 = S[len(S)-10:]
+    >>> print(last10)
+    QRSTUVWXYZ
+    >>> middle = S[10:20]
+    >>> print(middle)
+    KLMNOPQRST
+
+
+### string concatenation
+
+We can use the *accumulator pattern* to grow or accumulate a string:
+
+    >>> S = ""
+    >>> for i in range(5):
+    ...    S = S + str(i)
+    ...    print(S)
+    ...
+    0
+    01
+    012
+    0123
+    01234
+
+In the above code, `str(i)` converts the current value of `i` to a string.
+This is then added to the current value of `S`, and assigned back to the
+variable `S`.
+
+### comparing strings
+
+Strings are encoded using the
+https://en.wikipedia.org/wiki/ASCII[ASCII]
+encoding scheme. This just means a numeric value is assigned to each
+possible character (`+,-./0123....ABCD...XYZ...abcd...xyz...`).  
+When you compare strings, they are compared
+by these numeric values.  It is not important to *know* the ASCII values, but
+you should remember that the ASCII values for 'a' to 'z',
+'A' to 'Z' and '0' to '9' are contiguous. This means comparing two
+lowercase strings works as you would expect:
+
+    >>> "apple" < "banana"
+    True
+    >>> "zebra" > "pony"
+    True
+
+and comparing two uppercase strings also *works*:
+
+    >>> "Rich" > "Jeff"
+    True
+    >>> "Jeff" > "Sara"
+    False
+
+You can also test if a substring is present in another string using the `in`
+(membership) operator:
+
+    >>> "a" in "computer science"
+    False
+    >>> "the" in "well hello there"
+    True
+    >>> "LL" in "hello"
+    False
+
+
+### `ord()` and `chr()`
+
+If you are curious, you can convert single characters to their ASCII values
+using the `ord()` function (and convert back using `chr()`).  
+The ASCII values alone are not that useful, but comparing them and doing
+math with them can often be useful.  
+
+    >>> ch = "C"
+    >>> ord(ch)
+    67
+    >>> difference = ord(ch) - ord("A")
+    >>> print(difference)
+    2
+    >>> ord(ch) + difference
+    69
+    >>> chr(ord(ch) + difference)
+    'E'
+
+### common string methods
+
+Strings are objects in Python, and thus have methods that
+we can invoke on them.
+There are a lot of methods in the `str` library for creating new
+string objects from existing string objects and for testing properties
+of strings. Keep in mind that **strings are immutable**!
+
+Here are a few `str` methods that may be particularly useful (run `help(str)`
+in the python interpreter to see the full set):
+
+
+.String Methods
+[options="header"]
+|=======================
+|str method |result
+| upper()   | return copy of str converted to uppercase 
+| lower()   | return copy of str converted to lowercase 
+| isalpha() | return True if string is all alphabetic characters 
+| isdigit() | return True if string is all digits 
+| count(sub)| return number of occurrences of sub 
+| index(sub)| return index of first occurrence of sub
+| strip()   | strip off leading and trailing whitespace 
+| split()   | split into list of "words" (see below) 
+|=======================
+
+    >>> S = "we LOVE cs"
+    >>> S.upper()
+    'WE LOVE CS'
+    >>> S.lower()
+    'we love cs'
+    >>> S.isalpha()
+    False
+    >>> S.isdigit()
+    False
+    >>> S.count(" ")
+    2
+    >>> S.index("L")
+    3
+    >>> S.split()
+    ['we', 'LOVE', 'cs']
+    >>> S = "   we love cs    "
+    >>> len(S)
+    17
+    >>> S = S.strip()
+    >>> len(S)
+    10
+    >>> print(S)
+    we love cs
+
+
+include::converting.adoc[]
+
+---
+
+See also:
+
+- <<_string_formatting>>
+- <<_slicing>>
+- <<_ord_and_chr_2>>
+- <<_objects_and_methods>>

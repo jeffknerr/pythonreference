@@ -1,0 +1,67 @@
+
+= `random` library
+
+The python `random` library provides *pseudo-random numbers*
+for your programs (useful for games, etc). There are also 
+functions to choose a random item from a list or sequence.
+
+== example
+
+    >>> from random import *
+    >>> randrange(1,101)
+    60
+    >>> randrange(1,101)
+    24
+    >>> randrange(1,101)
+    35
+    >>> randrange(1,101)
+    91
+    >>> L = list("ABCDEFG")
+    >>> choice(L)
+    'C'
+    >>> choice(L)
+    'D'
+    >>> choice(L)
+    'F'
+    >>> choice(L)
+    'B'
+
+
+== explanation/notes
+
+To use the `random` library, we first need to
+<<_import_statements,import>>
+it.
+
+The `randrange(start,stop)` function picks a random number
+from `start` to `stop - 1`, so the above example is choosing a
+random number from 1-100.
+
+The `choice(sequence)` function picks a random item from a sequence
+(here a python list).
+
+.`random` Library Functions
+[options="header"]
+|=======================
+|function |description                 |example
+|`randrange`|pick random integer from range|`randrange(1,11)`
+|`choice`|pick random item from sequence|`choice("ABCDEFG")`
+|`random`|pick random number from [0-1)|`random()`
+|`shuffle`|shuffle list in place|`shuffle(L)`
+|=======================
+
+== another example:
+
+    >>> from random import *
+    >>> if random() >= 0.5:
+    ...    print("Heads")
+    ... else:
+    ...    print("Tails")
+    ...
+    Tails
+
+---
+
+See also:
+
+- <<_import_statements>>

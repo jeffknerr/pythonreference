@@ -1,0 +1,148 @@
+
+= `if`/`else` (branching)
+
+The `if/elif/else` statement is used for branching:
+when your code needs to decide between one or more actions.
+
+== example
+
+[source, python]
+----
+if height > 48:
+   print("Good to go!")
+elif height >= 42:
+   print("You need an adult with you to ride this rollercoaster!")
+else:
+   print("Sorry, you are not tall enough for this rollercoaster!")
+----
+
+== explanation/notes
+
+The above code prints a different message, depending on the value
+stored in the `height` variable. There are three branches in this
+`if` statement: 
+
+- people over 48 (inches) can ride on their own
+- people in the 42-48 inch range can ride with an adult
+- people less than 42 inches (i.e., everyone else) cannot ride this rollercoaster
+
+Each *branch* is a code block. Just like the `for` loop, the code
+block is indented, and can be one or more lines long.
+
+The syntax of the `if/elif/else` statement is:
+
+    if <boolean expression>:
+       do this line
+       and any others in this block
+    elif <boolean expression>:
+       do this other code block
+    else:
+       do this indented line
+       and this one, too
+
+The *boolean expression* can be anything that evaluates to either `True`
+or `False`.
+
+If one of the boolean expressions is `True`, that code block is executed
+and **no further branches are tried** (i.e., the program jumps down to
+the code that comes *after* the `if/elif/else` statement and carries on
+from there).
+
+You can have a single `if` statement all by itself:
+
+[source, python]
+----
+if grade > 90:
+   print("Good work!")
+----
+You can also have just *two branches* (no `elif`):
+
+[source, python]
+----
+if grade > 70:
+   print("You passed!")
+else:
+   print("Uh oh...")
+----
+
+You can have three branches as shown above, or as many branches
+as you need:
+
+[source, python]
+----
+if grade >= 90:
+  print("A")
+elif grade >= 80:
+  print("B")
+elif grade >= 70:
+  print("C")
+elif grade >= 60:
+  print("D")
+else:
+  print("F")
+----
+
+In the last example, if `grade` has the value 85, the first boolean
+expression (`grade >= 90`) is `False`, so the computer goes on to
+test the next expression (`grade >= 80`). Since this one is `True`,
+it prints the *B* and then skips all further tests and would carry
+on with any code located below/after the `if/elif/else` statement.
+
+== boolean expressions
+
+Here are the boolean *comparison operators*:
+
+- equals: `==`
+- not equals: `!=`
+- greater than: `>`
+- less than: `<`
+- greater than or equal to: `>=`
+- less than or equal to: `$$<=$$`
+
+Python allows string comparisons (see <<_ord_and_chr_2>> for how):
+
+    >>> "apple" < "banana"
+    True
+    >>> "Zebra" > "Tiger"
+    True
+    >>> "Jeff" == "jeff"
+    False
+    >>> "Apple" < "apple"
+    True
+
+There is also a *membership* operator (`in`) that is really useful:
+
+    >>> S = "Swarthmore"
+    >>> L = ["dog", "cat", "zebra"]
+    >>> "a" in S
+    True
+    >>> "z" in S
+    False
+    >>> "dog" in L
+    True
+    >>> "camel" in L
+    False
+    >>> "more" in S
+    True
+    >>> "a" in L
+    False
+
+== another example
+
+You can also combine boolean expressions with `and`, `or`, and `not`:
+
+[source, python]
+----
+if (flavor == "chocolate") and (num_scoops > 0):
+   print("Yum!!")
+----
+
+For `and`: *both* conditions must be `True` to execute the code block. +
+For `or`: the code block will be executed if *either or both* are `True`:
+
+[source, python]
+----
+if (flavor == "chocolate") or (flavor == "mint chip"):
+   print("I'm OK with that. Thanks!")
+----
+

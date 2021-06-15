@@ -1,0 +1,80 @@
+
+= String Formatting
+
+This is a nice way to handle output strings that include variables.
+By *nice* I mean it avoids printing variables separated by commas,
+or concatenated together with the plus (+) operator. 
+
+== example
+
+    >>> name = "Ryan Howard"
+    >>> homeruns = 58
+    >>> average = 0.313
+    >>> year = 2016
+    >>> print("In %d, %s hit %.3f with %d home runs!" % (year, name, average, homeruns))
+    In 2016, Ryan Howard hit 0.313 with 58 home runs!
+
+== explanation/notes
+
+You can even create strings with this and use them as needed:
+
+    >>> output = "In %d, %s hit %.3f with %d home runs!" % (year, name, average, homeruns)
+    >>> type(output)
+    <class 'str'>
+    >>> print(output)
+    In 2016, Ryan Howard hit 0.313 with 58 home runs!
+
+In both of these examples, a sting is created by substituting the
+variables at the end in for the *format specifiers* (the `%s`, `%d`, and
+the `%f`). The variables must be in the correct order, so the first
+variable (`year`) is substituted for the first format specified (`%d`).
+
+And here's what the *format specifiers* mean:
+
+.String Format Specifiers
+[options="header"]
+|=======================
+|format specifier|description  |example   
+|`%d`|for **decimal** integers|`print("%d stars" % 3)`
+|`%f`|for **floats** |`print("pi is %f" % 3.14159)`
+|`%s`|for **strings**|`print("Hi, %s" % "Jeff")`
+|=======================
+
+You can also include *width* and *precision* information in the 
+format specifier. For example, the `%.3f` in the above examples 
+means we want only *3 digits after the decimal* in the float.
+
+If I were printing out numbers that I want to all line up
+(maybe dollar amounts), I could specify the *width* of each 
+output string. For example:
+
+    >>> nums = [21.5, 100, 3.45, 367.39]
+    >>> for num in nums:
+    ...    print("$%7.2f" % num)
+    ...
+    $  21.50
+    $ 100.00
+    $   3.45
+    $ 367.39
+
+The `%7.2f` means I want all floats printed with a **width of 7**
+and with **2 digits after the decimal**. Notice that after the
+dollar sign, all floats have a width of 7 characters (the decimal is one of 
+the 7 characters). If the float doesn't already have a width of 7,
+it is *padded* with spaces on the left side as needed.
+
+== another example
+
+There's also a newer `.format` way to handle string formatting.
+Here's an example of the above using the newer syntax:
+
+    >>> output = "In {:d}, {:s} hit {:.3f} with {:d} home runs!".format(year, name, average, homeruns)
+    >>> print(output)
+    In 2016, Ryan Howard hit 0.313 with 58 home runs!
+
+---
+
+See also:
+
+* https://pyformat.info/
+* <<_strings>>

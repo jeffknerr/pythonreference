@@ -1,0 +1,107 @@
+
+= `ord` and `chr`
+
+== example
+
+    >>> ord('a')
+    97
+    >>> ord('b')
+    98
+    >>> ord('c')
+    99
+    >>> chr(97)
+    'a'
+    >>> chr(98)
+    'b'
+    >>> chr(65)
+    'A'
+
+== explanation/notes
+
+Sometimes it is useful to compare letters and strings, or to do "math"
+on letters (e.g., if I have a letter, give me the 5th letter after the
+one I have).
+
+The computer is able to compare letters and strings because, underneath,
+the computer just sees letters as numbers. This is called an *encoding*,
+and one of the most-famous encodings is the
+https://en.wikipedia.org/wiki/ASCII[ASCII encoding]:
+
+//# ASCII table script, using awk.
+//# Author: Joseph Steinhauser
+//# Used in ABS Guide with permission.
+
+.Decimal ASCII Chart by Joseph Steinhauser
+|=======================
+| 000 nul| 001 soh| 002 stx| 003 etx| 004 eot| 005 enq| 006 ack| 007 bel
+| 008 bs | 009 tab| 010 nl | 011 vt | 012 np | 013 cr | 014 so | 015 si 
+| 016 dle| 017 dc1| 018 dc2| 019 dc3| 020 dc4| 021 nak| 022 syn| 023 etb
+| 024 can| 025 em | 026 sub| 027 esc| 028 fs | 029 gs | 030 rs | 031 us 
+| 032 sp | 033 !  | 034 "  | 035 #  | 036 $  | 037 %  | 038 &  | 039 '  
+| 040 (  | 041 )  | 042 *  | 043 +  | 044 ,  | 045 -  | 046 .  | 047 /  
+| 048 0  | 049 1  | 050 2  | 051 3  | 052 4  | 053 5  | 054 6  | 055 7  
+| 056 8  | 057 9  | 058 :  | 059 ;  | 060 <  | 061 =  | 062 >  | 063 ?  
+| 064 @  | 065 A  | 066 B  | 067 C  | 068 D  | 069 E  | 070 F  | 071 G  
+| 072 H  | 073 I  | 074 J  | 075 K  | 076 L  | 077 M  | 078 N  | 079 O  
+| 080 P  | 081 Q  | 082 R  | 083 S  | 084 T  | 085 U  | 086 V  | 087 W  
+| 088 X  | 089 Y  | 090 Z  | 091 [  | 092 \  | 093 ]  | 094 ^  | 095 _  
+| 096 `  | 097 a  | 098 b  | 099 c  | 100 d  | 101 e  | 102 f  | 103 g  
+| 104 h  | 105 i  | 106 j  | 107 k  | 108 l  | 109 m  | 110 n  | 111 o  
+| 112 p  | 113 q  | 114 r  | 115 s  | 116 t  | 117 u  | 118 v  | 119 w  
+| 120 x  | 121 y  | 122 z  | 123 {  | 124 \| | 125 }  | 126 ~  | 127 del
+|=======================
+
+So the computer sees the letter 'a' as 97, 'b' as 98, and 'c' as 99. 
+That's why these work:
+
+    >>> 'a' < 'b'
+    True
+    >>> 'b' < 'c'
+    True
+    >>> 'apple' < 'banana'
+    True
+    >>> 'apple' < 'azure'
+    True
+
+`ord()` and `chr()` allow you to convert back and forth between letters
+(or punctuation and other characters) and their ASCII encoding numbers.
+
+== another example
+
+[source,python]
+----
+ word = "dog"
+ newword = ""
+ for letter in word:
+   newnumber = ord(letter) + 3
+   newletter = chr(newnumber)
+   newword = newword + newletter
+ print(word, newword)
+----
+
+In the above example we use `ord(letter)` to turn the letter into a number,
+add 3 to it, then use `chr(newnumber)` to get the letter for that new number.
+If the letter were an 'a', the newletter would be a 'd'. This is often used 
+in simple cipher programs to shift letters in a string by
+some amount.  The above example would print "dog grj".
+
+Note: if the word was "xyz", what would the new "word" be?
+To be a "rotation cipher" the above code would have to test if the 
+new number was past the end of the alphabetic characters ('z' or 122),
+and if so, subtract 26 from the new number.
+
+Also, note that all of the capital letters ('A' - 'Z') are *before*
+the lowercase letters, so when comparing strings, make sure the case is the same!
+
+    >>> "APPLE" < "apple"
+    True
+    >>> "banana" < "APPLE"
+    False
+    >>> "BANANA" < "apple"
+    True
+
+---
+
+See also:
+
+- <<_strings>>

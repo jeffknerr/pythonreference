@@ -1,0 +1,84 @@
+
+= Variables
+
+== example
+
+    >>> x = 3.14159
+    >>> name = "Harry"
+    >>> m = 2
+    >>> cities = ["Philadelphia", "Denver", "Paris"]
+    >>> print(x)
+    3.14159
+    >>> print(x*m)
+    6.28318
+    >>> print(cities*m)
+    ['Philadelphia', 'Denver', 'Paris', 'Philadelphia', 'Denver', 'Paris']
+
+== explanation/notes
+
+We are *declaring* variables using the *assignment operator* (=). 
+Declaring `m = 2` means: create a variable called *m* that refers to the
+integer value `2` stored in memory. We can then use the variable *m* 
+throughout the rest of our program.
+
+Variable names are *case sensitive*.
+
+    >>> bird = "Eagle"
+    >>> print(bird)
+    Eagle
+    >>> print(Bird)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    NameError: name 'Bird' is not defined
+
+No spaces allowed in variable names. 
+
+    >>> my name = "Jeff"
+      File "<stdin>", line 1
+        my name = "Jeff"
+              ^
+    SyntaxError: invalid syntax
+
+Also can't start with a number.
+
+    >>> 5star = "Hilton"
+      File "<stdin>", line 1
+        5star = "Hilton"
+            ^
+    SyntaxError: invalid syntax
+
+The variable declaration syntax is **always** `<variable> = <value>` or
+`<variable> = <expression>`. 
+
+    >>> pi = 3.1415928
+    >>> radius = 2
+    >>> area = pi*(radius)**2
+    >>> print(area)
+    12.5663712
+
+Switching the order (value = variable) doesn't work!
+
+    >>> 2 = m
+      File "<stdin>", line 1
+    SyntaxError: can't assign to literal
+
+== another example
+
+You can use variables on either side of the assignment operator.
+Just remember that the right side (the value or expression) is always evaluated
+*first*, then assigned to the variable on the left side. That allows
+something like this (increment a variable) to work:
+
+    >>> counter = 0
+    >>> counter = counter + 1
+    >>> print(counter)
+    1
+    >>> counter = counter + 1
+    >>> print(counter)
+    2
+
+The second line above says: get the value referred to by `counter`, add 1 to it
+to make a new value, then store that new value in memory *in the location that the
+counter variable refers to*. So we pull out what is stored there, make a new value,
+then store the new value back in the same spot.
+

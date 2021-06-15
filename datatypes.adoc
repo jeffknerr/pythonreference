@@ -1,0 +1,99 @@
+
+= Data Types
+
+== example
+
+    >>> age = 54
+    >>> height = 5.75
+    >>> name = "Jeff"
+    >>> happy = True
+    >>> dogs = ["Max", "Sam", "Lily"]
+    >>> print(happy)
+    True
+    >>> type(happy)
+    <type 'bool'>
+    >>> type(height)
+    <type 'float'>
+
+
+== explanation/notes
+
+The main data types in python are: **integer** (int), **string** (str),
+**float**, **list**, and **boolean ** (bool). There are others (e.g., tuples
+and dictionaries), but these are the main basic types.
+
+**A data type is defined by it's possible values and the operations that 
+can be performed on those values**. For integers, the possible values are 
+all integers (0, 1, 2, ..., and the negative integers -1, -2, ...), and 
+the operations are addition, subtraction, multiplication, and so on.
+The *boolean* data type has just two values: `True` and `False` (must be
+uppercase).
+
+The data type *really matters* for some things!
+
+    >>> 5/2
+    2.5
+    >>> 5//2
+    2
+
+The first line above uses *floating-point* math, and probably does what you
+were expecting. The second line does
+*integer* division (i.e., ignores any remainder). 
+
+For the string data type,
+*multiplication by integers is allowed/supported*, 
+but multiplication by floats is not. 
+
+    >>> "hello"*3
+    'hellohellohello'
+    >>> "hello"*3.5
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: can't multiply sequence by non-int of type 'float'
+
+The same is true for lists:
+
+    >>> dogs*2
+    ['Max', 'Sam', 'Lily', 'Max', 'Sam', 'Lily']
+    >>> dogs*2.5
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: can't multiply sequence by non-int of type 'float'
+
+In python you do not need to declare what type to store in a variable,
+so you can freely reassign different types to the same variable (not recommended!).
+
+    >>> x = 5
+    >>> print(x)
+    5
+    >>> x = "hello"
+    >>> print(x)
+    hello
+    >>> type(x)
+    <class 'str'>
+
+This is a tradeoff! Python code is usually shorter and cleaner than other languages,
+because we don't have to write out what type everything is (variables and functions).
+However, this can often lead to other problems (e.g., if you expect x to be a float, 
+but it's a string) or slower code (sometimes the computer can optimize your code
+for you, if it knows the type of every variable and function).
+
+== another example
+
+Sometimes it is useful to check if something *is an instance of* a certain
+data type:
+
+    >>> isinstance(5,int)
+    True
+    >>> isinstance(5,float)
+    False
+    >>> isinstance(5,str)
+    False
+    >>> isinstance("5",str)
+    True
+
+---
+
+See also: 
+
+- <<_functions_builtin>>

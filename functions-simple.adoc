@@ -1,0 +1,105 @@
+
+
+= Functions: simple
+
+Functions are just blocks of code with a name, which we can *call*
+using the name and parentheses:
+
+== example
+
+    >>> def celsius(tempF):
+    ...    tempC = (tempF - 32) * (5/9)
+    ...    return tempC
+    ...
+    >>> print(celsius(72))
+    22.22222222222222
+    >>> print(celsius(32))
+    0.0
+    >>> print(celsius(-40))
+    -40.0
+
+== explanation/notes
+
+In the above example we *define* the function called `celsius`.
+It has one *parameter*: a varible named `tempF`, which presumably
+holds the temperature in degrees Fahrenheit that we want to convert
+to degrees Celsius. Given `tempF`, we calculate the temperature in
+degrees Celsius and store it in a variable called `tempC`. Finally,
+the function *returns* the data stored in `tempC` back to whoever 
+called this function.
+
+The next three lines above just show three examples of *calling* the function.
+In the first example (`celsius(72)`) the *argument* in the function call is
+the integer 72. This means, in the function, `tempF` is assigned the value of 72.
+In the second call, the argument is 32, and the function calculates and returns
+32F converted to Celsius.
+
+As you can see, functions are *extremely* useful if we ever have to perform repeated 
+calculations. They can also make our programs more readable, if we choose good 
+function names. And they greatly reduce complexity for larger programs, making
+them both easier to read and to design/write.
+
+The syntax of defining a function is:
+
+    def <function>(<params>):
+       <body of function>
+
+The name of the function can be almost anything (no spaces, can't start with a number,
+similar to variable names). A function can have zero or more parameters. The body of
+the function can be one or more lines (every indented line is part of the function).
+A function may or may not return anything to the calling program.
+
+Here's an example of a function that just prints stuff and doesn't return anything
+back to the program that called the function:
+
+[source,python]
+----
+def poem(color1, color2):
+   """print a silly poem"""
+   print("Roses are %s," % color1)
+   print("Violets are %s," % color2)
+   print("Sugar is sweet.")
+   print("And we love CompSci!!")
+----
+
+Calling the above function as `poem("red", "blue")` produces this:
+
+    Roses are red,
+    Violets are blue,
+    Sugar is sweet.
+    And we love CompSci!!
+    
+And calling the function as `poem("black", "pink")` produces this:
+
+    Roses are black,
+    Violets are pink,
+    Sugar is sweet.
+    And we love CompSci!!
+
+== another example
+
+[source,python]
+----
+def average(mylist):
+   """calculate and return average of numbers in a list"""
+   total = 0.0
+   for num in mylist:
+     total = total + num
+   ave = total/len(mylist)
+   return ave
+----
+
+This function calculates the average of all numbers in the given list,
+as it says in the *triple-quoted comment* (the first line under the
+`def` statement).  **All functions should have a comment under the `def`
+statement**, as it helps the reader to understand what the function
+does, and is also part of the built-in python help documentation.
+
+
+---
+
+See also:
+
+- <<_functions_builtin>>
+- <<_functions_advanced>>
+- <<_accumulator>>

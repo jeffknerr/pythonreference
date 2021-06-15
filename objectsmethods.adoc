@@ -1,0 +1,82 @@
+
+
+= Objects and Methods
+
+This section is just the basics of objects and methods: what they are,
+and how we use them. See <<_classes>> if you are looking for help on
+creating your own objects.
+
+== example
+
+    >>> course = "Introduction to Computer Science"
+    >>> course.count("o")
+    4
+    >>> course.count("z")
+    0
+    >>> course.isalpha()
+    False
+    >>> course.upper()
+    'INTRODUCTION TO COMPUTER SCIENCE'
+
+    >>> grades = [88,90,78,99,93]
+    >>> grades.sort()
+    >>> print(grades)
+    [78, 88, 90, 93, 99]
+    >>> grades.append(75)
+    >>> print(grades)
+    [78, 88, 90, 93, 99, 75]
+
+== explanation/notes
+
+Both python strings and python lists are examples of *objects*. An object is just
+some data *plus* some methods (similar to functions) wrapped up together into 
+one *thing*.
+
+The *string* methods used above are:
+
+- `count()` -- returns the number of occurrences of the given substring
+- `isalpha()` -- returns True if *all* characters in the string are letters
+- `upper()` -- returns an uppercase version of the string
+
+There are many other *str* methods. In string objects, the data are the characters
+in the string.
+
+The *list* methods used above are:
+
+- `sort()` -- sorts the list in place
+- `append()` -- adds the given argument to the end of the list
+
+In list objects, the data are the items in the list.
+
+== `object.method()` syntax
+
+Methods are always called with the **dot** syntax: `object.method()`
+
+Again, methods are similar to functions, except they are tied to the type of object,
+and are called with this special syntax.
+
+== another example
+
+    >>> from graphics import *
+    >>> gw = GraphWin()
+    >>> p = Point(10,20)
+    >>> c = Circle(p, 50)
+    >>> c.draw(gw)
+    >>> c.move(150,0)
+
+This example uses the
+https://mcsp.wartburg.edu/zelle/python[Zelle Graphics Library].
+
+Three objects are created: a graphics window, a point, and a circle. The circle
+is centered at the point's location (x=10, y=20), and has a radius of 50.
+The next line calls the Circle's `draw()` method to draw the circle in the
+graphics window. The last line moves the drawn circle 150 pixels in the x direction.
+
+
+---
+
+See also:
+
+- <<_strings>>
+- <<_lists>>
+- <<_classes>>

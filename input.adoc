@@ -1,0 +1,63 @@
+
+= Input
+
+This could mean input from the user, or from a file, or some other source,
+like pulling data from a web site.
+
+== example
+
+    >>> number = input("Pick a number from 1-10: ")
+    Pick a number from 1-10: 4
+    >>> print(number)
+    4
+
+== explanation/notes
+
+The <<_functions_builtin,built-in>> `input()` function allows the program to prompt the user for
+input, then wait for a response. 
+
+The argument (a string: "Pick a number...") is displayed to the 
+user. When the user types in a response (the 4) and hits the "Enter" key, the input data
+is returned to the program. In the above example, the "4" is returned and
+immediately assigned to the variable `number`.
+
+**The `input()` function always returns a string**, no matter what the
+user types (letters, digits, punctuation, etc). If you are expecting the
+user to enters integers or floats, and your program needs integers or 
+floats to work, you will need to convert the user input to the correct data type:
+
+    >>> print(type(number))
+    <class 'str'>
+    >>> number = int(number)
+    >>> print(type(number))
+    <class 'int'>
+    >>> print(number)
+    4
+
+See the <<_tryexcept>> section for better ways to check for and convert
+valid user input.
+
+== another example
+
+[source,python]
+----
+name = input("Name: ")
+prompt = "Hi, %s! Year you were born? " % (name)
+year = int(input(prompt))
+----
+
+This code asks for the user's name, then uses it in the next prompt
+that asks for when the user was born. The second input is automatically
+converted to an int and assigned to the `year` variable. Here's a
+sample run of the above code, where the user enters "George" and "1732":
+
+    Name: George
+    Hi, George! Year you were born? 1732
+
+
+---
+
+See also:
+
+- <<_files>>
+- <<_tryexcept>>

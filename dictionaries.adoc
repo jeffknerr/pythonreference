@@ -1,0 +1,91 @@
+
+= Dictionaries
+
+Dictionaries are great for storing *key-value* mappings or pairs.
+
+== example
+
+Suppose you wanted to convert letters into their equivalent 
+https://en.wikipedia.org/wiki/Morse_code[Morse Code]
+dots and dashes:
+
+    >>> d = {}
+    >>> d['a'] = ".-"
+    >>> d['b'] = "-..."
+    >>> d['c'] = "-.-."
+    >>> print(d)
+    {'a': '.-', 'b': '-...', 'c': '-.-.'}
+    >>> print(d['a'])
+    .-
+
+Here the letters ('a','b', and 'c') are the keys, and the dot/dash strings
+are the values. The first line creates an empty dictionary (using
+curly-braces). The next three lines add key-value pairs into the
+dictionary.
+
+If we had the full Morse Code dictionary defined: 
+
+[source,python]
+----
+morse = {'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 
+         'f': '..-.', 'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 
+         'k': '-.-', 'l': '.-..', 'm': '--', 'n': '-.', 'o': '---', 
+         'p': '.--.', 'q': '--.-', 'r': '.-.', 's': '...', 't': '-', 
+         'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-', 'y': '-.--', 
+         'z': '--..'}
+----
+
+then we could use it to *lookup* values, given letters. 
+Here's a quick example:
+
+[source,python]
+----
+for ch in "sos":
+   print(morse[ch])
+----
+
+This would print three dots for the 's', then three dashes for the 'o',
+and then another three dots for the last 's'.
+
+== explanation/notes
+
+Dictionaries are useful for any kind of *key-value* lookup system.
+For example, usernames and passwords:
+
+[source,python]
+----
+passwords = {'terry':'lovesYogurt', 'jake':'DieHard5',
+             'amy':'MoreBinders', 'holt':'Cheddar!!'}
+----
+
+Given a username (e.g., 'jake'), we can *lookup* the password
+in the dictionary (passwords['jake']).
+
+== another example
+
+There are a variety of useful *methods* for dictionary objects:
+
+    >>> passwords.keys()
+    dict_keys(['terry', 'jake', 'amy', 'holt'])
+    >>> passwords.values()
+    dict_values(['lovesYogurt', 'DieHard5', 'MoreBinders', 'Cheddar!!'])
+    >>> passwords.items()
+    dict_items([('terry', 'lovesYogurt'), ('jake', 'DieHard5'), ('amy', 'MoreBinders'), ('holt', 'Cheddar!!')])
+    >>> for k in passwords:
+    ...    print(k, passwords[k])
+    ...
+    terry lovesYogurt
+    jake DieHard5
+    amy MoreBinders
+    holt Cheddar!!
+
+The last example shows dictionaries can be used in a `for` loop, 
+with the loop variable becoming each *key* in the dictionary.
+
+---
+
+See also:
+
+- <<_objects_and_methods>>
+- <<_tuples>>
+

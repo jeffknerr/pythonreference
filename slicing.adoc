@@ -1,0 +1,77 @@
+
+= Slicing
+
+Slicing is useful for pulling out parts of strings or lists.
+For example, if you just want the first 6 characters of a string,
+or the last two items in a list.
+
+== example
+
+    >>> first = "luke"
+    >>> last = "skywalker"
+    >>> first[0] + last[0:6] + "1"
+    'lskywal1'
+    >>>
+    >>> L = list("ABCDEFG")
+    >>> print(L)
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    >>> print(L[2:5])
+    ['C', 'D', 'E']
+    >>> print(L[5:])
+    ['F', 'G']
+    >>> print(L[:2])
+    ['A', 'B']
+
+== explanation/notes
+
+Using *square-bracket indexing* and the *slicing operator* (":"),
+the `last[0:6]` statement grabs just the first six characters 
+(0 through 5) from the `last` string.
+
+The slicing syntax is `[start:stop]`, meaning grab all items or
+characters from index `start` up to but not including index `stop`.
+
+In the list example, `L[2:5]` grabs items from the list from positions
+2 through 4 (does not include item at position 5).
+
+Leaving off the start (e.g., `L[:2]`) defaults to the beginning of
+the sequence. Leaving off the stop (`L[5:]`)
+defaults to the end of the sequence.
+
+It's also OK if the stop is past the end of the sequence:
+
+    >>> print(L)
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    >>> L[5:20]
+    ['F', 'G']
+    >>>
+    >>> S = "hello"
+    >>> S[3:20]
+    'lo'
+
+== another example
+
+    >>> strand = "AUGGCCUGGUAA"
+    >>> for i in range(len(strand)):
+    ...    print(i,strand[i:i+3])
+    ...
+    0 AUG
+    1 UGG
+    2 GGC
+    3 GCC
+    4 CCU
+    5 CUG
+    6 UGG
+    7 GGU
+    8 GUA
+    9 UAA
+    10 AA
+    11 A
+
+---
+
+See also:
+
+- <<_strings>>
+- <<_lists>>
+
