@@ -21,6 +21,9 @@
 
 = {title}
 
+This python reference is hopefully posted here:
+{website}[{website}]
+
 include::intro.adoc[]
 include::variables.adoc[]
 include::datatypes.adoc[]
