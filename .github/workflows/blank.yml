@@ -26,5 +26,5 @@ jobs:
 
       - name: asciidoctor-ghpages
         uses: manoelcampos/asciidoctor-ghpages-action@v2
-        with:
-          asciidoctor_params: --attribute=nofooter
+#       with:
+#         asciidoctor_params: --attribute=nofooter

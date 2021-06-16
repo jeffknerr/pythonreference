@@ -24,6 +24,10 @@
 This python reference is hopefully posted here:
 {website}[{website}]
 
+See https://github.com/jeffknerr/pythonreference[the pythonreference repo] for
+the actual asciidoc files.
+
+
 include::intro.adoc[]
 include::variables.adoc[]
 include::datatypes.adoc[]
